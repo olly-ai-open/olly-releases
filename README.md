@@ -80,22 +80,25 @@ warning.*
 
 ### B. Get past the security warning
 
-Olly is not notarized with Apple, so the first launch shows "Olly can't be
-opened because Apple cannot check it for malicious software" (or "is
-damaged" on some versions). To get past it:
+Olly is not notarized with Apple, so macOS blocks the first launch with
+"Olly can't be opened because Apple cannot check it for malicious software"
+or "Olly is damaged and can't be opened". Pick one of these:
 
-1. In Applications, right-click (or Control-click) Olly, then **Open**.
-2. In the dialog, click **Open** again. This whitelists the app, so future
-   launches are normal.
-   - On macOS Sequoia (15) and later you may instead need **System
-     Settings, Privacy & Security**, scroll down, and click **Open Anyway**
-     next to the Olly message.
+- **Open Anyway.** Try to open the app once and dismiss the warning. Then
+  open **System Settings, Privacy & Security**, scroll down, and click
+  **Open Anyway** next to the Olly message. Confirm, and the app opens.
+  Future launches are normal.
+- **Terminal.** Run this once:
 
-If neither works, run this once in Terminal:
+  ```bash
+  xattr -dr com.apple.quarantine /Applications/olly.app
+  ```
 
-```bash
-xattr -dr com.apple.quarantine /Applications/olly.app
-```
+  This also fixes the "is damaged" message.
+
+On macOS 14 and earlier, right-click (or Control-click) Olly in
+Applications, choose **Open**, then **Open** again. This shortcut no longer
+works on macOS 15 and later.
 
 ### C. First launch
 
